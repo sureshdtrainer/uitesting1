@@ -13,12 +13,24 @@ with sync_playwright() as p:
     #by class
     #CSS selectors
 
-    emailtextbox = page.wait_for_selector("#email")
+    #emailtextbox = page.wait_for_selector("#email")
+    #emailtextbox.fill("test123@email.com")
+
+    #Click the next button
+    #button = page.wait_for_selector("#enterimg")
+    #button.click()
+
+    #//input[@id="email"]
+    #//img[@id="enterimg"]
+
+    #Xpath Selectors
+    emailtextbox = page.wait_for_selector("//input[@id='email']")
     emailtextbox.fill("test123@email.com")
 
     #Click the next button
-    button = page.wait_for_selector("#enterimg")
+    button = page.wait_for_selector("//img[@id='enterimg']")    
     button.click()
+
 
     print(page.title())
 
