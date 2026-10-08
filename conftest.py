@@ -1,5 +1,7 @@
 import pytest
 from playwright.sync_api import Page
+from datetime import datetime
+
 
 @pytest.fixture
 def login_page(page: Page):
@@ -9,3 +11,8 @@ def login_page(page: Page):
     login_page.navigate()
 
     return login_page
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_configure(config):
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    config.option.htmlpath = f"reports/report_{now}.html"
