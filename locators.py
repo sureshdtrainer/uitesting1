@@ -24,7 +24,11 @@ with sync_playwright() as p:
     #//img[@id="enterimg"]
 
     #Xpath Selectors
-    emailtextbox = page.wait_for_selector("//input[@id='email']")
+    #wait_for_selector will wait implicitely (Implicit wait)
+    #emailtextbox = page.wait_for_selector("//input[@id='email']")
+
+    #Explicit wait is recommended for dynamic elements, so we can use locator() method to locate the element and then wait for it to be visible before interacting with it.
+    emailtextbox = page.locator("//input[@id='email']").wait_for()
     emailtextbox.fill("test123@email.com")
 
     #Click the next button
